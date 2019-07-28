@@ -45,18 +45,9 @@ abstract class BillRoomDatabase : RoomDatabase() {
             super.onOpen(db)
             INSTANCE?.let { database ->
                 scope.launch(Dispatchers.IO) {
-                    populateDatabase(database.billDao())
+                    //populateDatabase(database.billDao())
                 }
             }
-        }
-
-        suspend fun populateDatabase(billDao: BillDao) {
-            billDao.deleteAll()
-
-            var bill = Bill("Rent", "400.00", "I miss St. Louis rent prices", "August 20 2019")
-            billDao.insert(bill)
-            bill = Bill("Electricity", "100.00", "zap", "August 20 2019")
-            billDao.insert(bill)
         }
     }
 }

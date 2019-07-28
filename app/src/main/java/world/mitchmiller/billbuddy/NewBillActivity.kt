@@ -7,6 +7,8 @@ import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NewBillActivity : AppCompatActivity() {
 
@@ -43,11 +45,14 @@ class NewBillActivity : AppCompatActivity() {
         }
     }
 
-    fun getDateString(): String {
-        return "August 20"
+    private fun getDateString(): String {
+        val currentTime: Date = Calendar.getInstance(Locale.getDefault()).time
+        val simpleDateFormat = SimpleDateFormat("EEE, MMM dd, YYYY", Locale.getDefault())
+
+        return simpleDateFormat.format(currentTime)
     }
 
-    fun saveBill(bill: Bill) {
+    private fun saveBill(bill: Bill) {
         val replyIntent = Intent()
         if (TextUtils.isEmpty(nameEditText.text)) {
             setResult(Activity.RESULT_CANCELED, replyIntent)

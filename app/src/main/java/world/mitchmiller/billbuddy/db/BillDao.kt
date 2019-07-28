@@ -17,5 +17,4 @@ interface BillDao {
 
     @Query("DELETE FROM bill_table")
     fun deleteAll()
-
 }
