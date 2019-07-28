@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">BillBuddy</string>
+
+    <string name="example_bill_name">Water Bill</string>
+    <string name="name_label">name</string>
+    <string name="amount_label">amount</string>
+    <string name="note_label">note</string>
+    <string name="save">SAVE</string>
+    <string name="empty_not_saved">not saved</string>
+    <string name="example_amount">$1234.12</string>
+    <string name="example_due_date">August 20</string>
+</resources>
