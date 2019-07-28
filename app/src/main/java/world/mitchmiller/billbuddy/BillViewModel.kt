@@ -23,4 +23,8 @@ class BillViewModel(application: Application) : AndroidViewModel(application) {
     fun insert(bill: Bill) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(bill)
     }
+
+    fun delete(bill: Bill) {
+        repository.delete(bill)
+    }
 }

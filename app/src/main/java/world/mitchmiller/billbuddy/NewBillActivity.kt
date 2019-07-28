@@ -22,6 +22,7 @@ class NewBillActivity : AppCompatActivity() {
         const val EXTRA_AMOUNT = "amount"
         const val EXTRA_NOTES = "note"
         const val EXTRA_DUE_DATE = "due_date"
+        const val EXTRA_PAID = "paid"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +40,8 @@ class NewBillActivity : AppCompatActivity() {
                     nameEditText.text.toString(),
                     amountEditText.text.toString(),
                     noteEditText.text.toString(),
-                    getDateString()
+                    getDateString(),
+                    false
                 )
             )
         }
@@ -61,6 +63,7 @@ class NewBillActivity : AppCompatActivity() {
             replyIntent.putExtra(EXTRA_AMOUNT, bill.monthlyAmount)
             replyIntent.putExtra(EXTRA_NOTES, bill.notes)
             replyIntent.putExtra(EXTRA_DUE_DATE, bill.dueDate)
+            replyIntent.putExtra(EXTRA_PAID, bill.paid)
             setResult(Activity.RESULT_OK, replyIntent)
         }
         finish()

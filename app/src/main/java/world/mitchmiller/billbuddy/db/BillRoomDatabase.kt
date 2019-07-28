@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import world.mitchmiller.billbuddy.Bill
 
-@Database(entities = [Bill::class], version = 2)
+@Database(entities = [Bill::class], version = 3)
 abstract class BillRoomDatabase : RoomDatabase() {
 
     abstract fun billDao(): BillDao

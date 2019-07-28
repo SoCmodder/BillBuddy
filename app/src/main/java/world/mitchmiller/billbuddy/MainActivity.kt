@@ -56,7 +56,8 @@ class MainActivity : AppCompatActivity() {
                     it.getStringExtra(NewBillActivity.EXTRA_NAME),
                     it.getStringExtra(NewBillActivity.EXTRA_AMOUNT),
                     it.getStringExtra(NewBillActivity.EXTRA_NOTES),
-                    it.getStringExtra(NewBillActivity.EXTRA_DUE_DATE)
+                    it.getStringExtra(NewBillActivity.EXTRA_DUE_DATE),
+                    it.getBooleanExtra(NewBillActivity.EXTRA_PAID, false)
                 )
                 billViewModel.insert(bill)
             }

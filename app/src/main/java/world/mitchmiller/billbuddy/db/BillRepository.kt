@@ -11,4 +11,9 @@ class BillRepository(private val billDao: BillDao) {
     suspend fun insert(bill: Bill) {
         billDao.insert(bill)
     }
+
+    @WorkerThread
+    fun delete(bill: Bill) {
+        billDao.delete(bill)
+    }
 }
