@@ -9,4 +9,5 @@
     <string name="empty_not_saved">not saved</string>
     <string name="example_amount">$1234.12</string>
     <string name="example_due_date">August 20</string>
+    <string name="due_date_label">due date</string>
 </resources>

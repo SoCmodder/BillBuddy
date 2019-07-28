@@ -16,6 +16,7 @@ class NewBillActivity : AppCompatActivity() {
     private lateinit var amountEditText: EditText
     private lateinit var noteEditText: EditText
     private lateinit var saveButton: Button
+    private lateinit var dueDate: Button
 
     companion object {
         const val EXTRA_NAME = "name"
@@ -33,6 +34,7 @@ class NewBillActivity : AppCompatActivity() {
         amountEditText = findViewById(R.id.amount_et)
         noteEditText = findViewById(R.id.note_et)
         saveButton = findViewById(R.id.save_button)
+        dueDate = findViewById(R.id.due_date_button)
 
         saveButton.setOnClickListener {
             saveBill(
@@ -44,6 +46,10 @@ class NewBillActivity : AppCompatActivity() {
                     false
                 )
             )
+        }
+
+        dueDate.setOnClickListener {
+
         }
     }
 
