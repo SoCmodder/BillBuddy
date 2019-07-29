@@ -1,6 +1,7 @@
 package world.mitchmiller.billbuddy
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +15,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import world.mitchmiller.billbuddy.BillRecyclerAdapter.Companion.DATE_SORT
+import world.mitchmiller.billbuddy.BillRecyclerAdapter.Companion.NAME_SORT
+import world.mitchmiller.billbuddy.BillRecyclerAdapter.Companion.NOTE_SORT
 
 //TODO: TO ADD:
 /**
@@ -27,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var billViewModel: BillViewModel
     private lateinit var fab: FloatingActionButton
+    private lateinit var adapter: BillRecyclerAdapter
 
     companion object {
         const val newBillActivityRequestCode = 1
@@ -38,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = BillRecyclerAdapter(this)
+        adapter = BillRecyclerAdapter(this)
         recyclerview.adapter = adapter
         recyclerview.layoutManager = LinearLayoutManager(this)
 
@@ -76,9 +81,36 @@ class MainActivity : AppCompatActivity() {
                 }
                 showAreYouSureDialog(dialogClickListener)
             }
+            R.id.sort -> {
+                showSortDialog()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
+
+    private fun showSortDialog() {
+        val sortListener = DialogInterface.OnClickListener{_,which ->
+            when(which){
+                DialogInterface.BUTTON_POSITIVE -> adapter.sortBills(NAME_SORT)
+                DialogInterface.BUTTON_NEGATIVE -> adapter.sortBills(DATE_SORT)
+                DialogInterface.BUTTON_NEUTRAL -> adapter.sortBills(NOTE_SORT)
+            }
+        }
+
+        lateinit var dialog: AlertDialog
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Sort")
+        builder.setMessage("which sort method?")
+        builder.setPositiveButton("name", sortListener)
+        builder.setNeutralButton("date", sortListener)
+        builder.setNegativeButton("note", sortListener)
+
+        dialog = builder.create()
+        dialog.show()
+    }
+
+
 
     private fun launchNewBillActivityForResult() {
         val intent = Intent(this, NewBillActivity::class.java)

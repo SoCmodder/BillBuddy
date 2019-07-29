@@ -11,6 +11,12 @@ class BillRecyclerAdapter internal constructor(context: Context) : RecyclerView.
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var bills = emptyList<Bill>() // Cached copy of words
 
+    companion object {
+        const val NAME_SORT = 11
+        const val DATE_SORT = 12
+        const val NOTE_SORT = 13
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BillViewHolder {
         val itemView = inflater.inflate(R.layout.bill_list_item, parent, false)
         return BillViewHolder(itemView)
@@ -27,8 +33,28 @@ class BillRecyclerAdapter internal constructor(context: Context) : RecyclerView.
     }
 
     internal fun setBills(bills: List<Bill>) {
-        this.bills = bills.sortedBy { it.name }
+        this.bills = bills
         notifyDataSetChanged()
+    }
+
+    internal fun sortBills(sortMethod: Int) {
+        val result = bills.sortedBy {
+            when (sortMethod) {
+                NAME_SORT -> {
+                    it.name
+                }
+                DATE_SORT -> {
+                    it.dueDate
+                }
+                NOTE_SORT -> {
+                    it.notes
+                }
+                else -> {
+                    it.name
+                }
+            }
+        }
+        setBills(result)
     }
 
     inner class BillViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
