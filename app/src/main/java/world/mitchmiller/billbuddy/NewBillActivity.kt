@@ -1,11 +1,14 @@
 package world.mitchmiller.billbuddy
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
+import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
 import java.util.*
@@ -17,6 +20,9 @@ class NewBillActivity : AppCompatActivity() {
     private lateinit var noteEditText: EditText
     private lateinit var saveButton: Button
     private lateinit var dueDate: Button
+    private lateinit var dueDateValue: TextView
+
+    var cal = Calendar.getInstance()
 
     companion object {
         const val EXTRA_NAME = "name"
@@ -35,6 +41,7 @@ class NewBillActivity : AppCompatActivity() {
         noteEditText = findViewById(R.id.note_et)
         saveButton = findViewById(R.id.save_button)
         dueDate = findViewById(R.id.due_date_button)
+        dueDateValue = findViewById(R.id.due_date_value)
 
         saveButton.setOnClickListener {
             saveBill(
@@ -50,7 +57,29 @@ class NewBillActivity : AppCompatActivity() {
 
         dueDate.setOnClickListener {
 
+            val dateSetListener = object : DatePickerDialog.OnDateSetListener {
+                override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
+                                       dayOfMonth: Int) {
+                    cal.set(Calendar.YEAR, year)
+                    cal.set(Calendar.MONTH, monthOfYear)
+                    cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                    updateDateInView()
+                }
+            }
+
+            DatePickerDialog(this@NewBillActivity,
+                dateSetListener,
+                // set DatePickerDialog to point to today's date when it loads up
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)).show()
         }
+    }
+
+    private fun updateDateInView() {
+        val myFormat = "MM/dd/yyyy" // mention the format you need
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        dueDateValue.text = sdf.format(cal.getTime())
     }
 
     private fun getDateString(): String {
