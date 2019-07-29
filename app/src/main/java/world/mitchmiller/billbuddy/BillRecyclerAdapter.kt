@@ -40,18 +40,10 @@ class BillRecyclerAdapter internal constructor(context: Context) : RecyclerView.
     internal fun sortBills(sortMethod: Int) {
         val result = bills.sortedBy {
             when (sortMethod) {
-                NAME_SORT -> {
-                    it.name
-                }
-                DATE_SORT -> {
-                    it.dueDate
-                }
-                NOTE_SORT -> {
-                    it.notes
-                }
-                else -> {
-                    it.name
-                }
+                NAME_SORT -> it.name
+                DATE_SORT -> it.dueDate
+                NOTE_SORT -> it.notes
+                else -> it.name
             }
         }
         setBills(result)
