@@ -20,13 +20,14 @@ class BillRecyclerAdapter internal constructor(context: Context) : RecyclerView.
 
     override fun onBindViewHolder(holder: BillViewHolder, position: Int) {
         val current = bills[position]
-        holder.billItemView.text = current.name
+        holder.billItemView.text = current.name.capitalize()
         holder.billAmount.text = String.format("$%s", current.monthlyAmount)
         holder.billDate.text = current.dueDate
+        holder.billNote.text = current.notes
     }
 
     internal fun setBills(bills: List<Bill>) {
-        this.bills = bills
+        this.bills = bills.sortedBy { it.name }
         notifyDataSetChanged()
     }
 
@@ -34,5 +35,6 @@ class BillRecyclerAdapter internal constructor(context: Context) : RecyclerView.
         val billItemView: TextView = itemView.findViewById(R.id.name)
         val billAmount: TextView = itemView.findViewById(R.id.amount)
         val billDate: TextView = itemView.findViewById(R.id.due_date)
+        val billNote: TextView = itemView.findViewById(R.id.note)
     }
 }

@@ -9,7 +9,7 @@
         android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_margin="8dp"
-        android:layout_height="100dp">
+        android:layout_height="120dp">
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -17,13 +17,28 @@
 
         <TextView
                 android:id="@+id/name"
-                android:padding="8dp"
+                android:padding="4dp"
                 tools:text="@string/example_bill_name"
                 android:gravity="center_vertical"
                 style="@style/bill_title"
                 android:textColor="@color/colorAccent"
-                android:layout_marginStart="16dp"
-                android:layout_centerVertical="true"/>
+                android:layout_marginStart="8dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"/>
+
+        <TextView
+                android:id="@+id/note"
+                android:layout_below="@+id/name"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_alignParentStart="true"
+                android:padding="4dp"
+                android:lines="3"
+                android:textColor="@android:color/darker_gray"
+                android:layout_toStartOf="@+id/due_date"
+                tools:text="@string/example_due_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         <TextView
                 android:id="@+id/amount"
