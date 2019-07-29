@@ -10,6 +10,7 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageButton
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -19,7 +20,7 @@ class NewBillActivity : AppCompatActivity() {
     private lateinit var amountEditText: EditText
     private lateinit var noteEditText: EditText
     private lateinit var saveButton: Button
-    private lateinit var dueDate: Button
+    private lateinit var dueDate: AppCompatImageButton
     private lateinit var dueDateValue: TextView
 
     var cal = Calendar.getInstance()

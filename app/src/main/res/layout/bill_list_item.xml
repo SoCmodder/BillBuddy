@@ -8,10 +8,10 @@
         android:id="@+id/cardview"
         android:background="@android:color/transparent"
         android:layout_width="match_parent"
-        android:layout_height="75dp">
+        android:layout_margin="8dp"
+        android:layout_height="100dp">
 
     <RelativeLayout
-            android:layout_margin="8dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -21,31 +21,34 @@
                 tools:text="@string/example_bill_name"
                 android:gravity="center_vertical"
                 style="@style/bill_title"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/colorAccent"
                 android:layout_marginStart="16dp"
                 android:layout_centerVertical="true"/>
 
         <TextView
                 android:id="@+id/amount"
                 android:layout_alignParentEnd="true"
+                android:padding="8dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:textColor="@android:color/holo_green_dark"
                 tools:text="@string/example_amount"
-                android:layout_width="100dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
         <TextView
                 android:id="@+id/due_date"
                 android:layout_alignParentEnd="true"
+                android:padding="8dp"
                 android:layout_marginBottom="8dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="8dp"
                 android:textColor="@android:color/holo_blue_dark"
-                android:textStyle="bold"
                 tools:text="@string/example_due_date"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
     </RelativeLayout>

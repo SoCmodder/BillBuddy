@@ -21,7 +21,7 @@ class BillRecyclerAdapter internal constructor(context: Context) : RecyclerView.
     override fun onBindViewHolder(holder: BillViewHolder, position: Int) {
         val current = bills[position]
         holder.billItemView.text = current.name
-        holder.billAmount.text = current.monthlyAmount
+        holder.billAmount.text = String.format("$%s", current.monthlyAmount)
         holder.billDate.text = current.dueDate
     }
 
