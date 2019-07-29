@@ -50,7 +50,7 @@ class NewBillActivity : AppCompatActivity() {
                     nameEditText.text.toString(),
                     amountEditText.text.toString(),
                     noteEditText.text.toString(),
-                    getDateString(),
+                    dueDateValue.text.toString(),
                     false
                 )
             )
@@ -75,19 +75,12 @@ class NewBillActivity : AppCompatActivity() {
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DAY_OF_MONTH)).show()
         }
+
+        updateDateInView()
     }
 
     private fun updateDateInView() {
-        val myFormat = "MM/dd/yyyy" // mention the format you need
-        val sdf = SimpleDateFormat(myFormat, Locale.US)
-        dueDateValue.text = sdf.format(cal.getTime())
-    }
-
-    private fun getDateString(): String {
-        val currentTime: Date = Calendar.getInstance(Locale.getDefault()).time
-        val simpleDateFormat = SimpleDateFormat("EEE, MMM dd, YYYY", Locale.getDefault())
-
-        return simpleDateFormat.format(currentTime)
+        dueDateValue.text = BillDateUtils.getBillDateStringFromDate(cal.time)
     }
 
     private fun saveBill(bill: Bill) {

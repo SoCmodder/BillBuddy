@@ -17,8 +17,8 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
-            android:backgroundTint="@android:color/holo_blue_dark"
             android:layout_alignParentBottom="true"
+            android:backgroundTint="@color/colorAccent"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
