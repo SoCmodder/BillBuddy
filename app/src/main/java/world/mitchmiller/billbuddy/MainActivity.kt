@@ -1,8 +1,12 @@
 package world.mitchmiller.billbuddy
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -17,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
  * - Different ways to sort
  * - Delete bills individually
  * - Add menu and button for deleting all
+ * - Connect settings activity
  */
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val newBillActivityRequestCode = 1
+        const val settingsRequestCode = 2
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +53,31 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener {
             launchNewBillActivityForResult()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId) {
+            R.id.settings -> {
+                val i = Intent(this, SettingsActivity::class.java)
+                startActivityForResult(i, settingsRequestCode)
+            }
+            R.id.delete_all -> {
+                val dialogClickListener = DialogInterface.OnClickListener{_,which ->
+                    when(which){
+                        DialogInterface.BUTTON_POSITIVE -> billViewModel.deleteAll()
+                        DialogInterface.BUTTON_NEGATIVE -> Log.d("MAIN", "Canceled")
+                    }
+                }
+                showAreYouSureDialog(dialogClickListener)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun launchNewBillActivityForResult() {

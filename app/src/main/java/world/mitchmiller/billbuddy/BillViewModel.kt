@@ -27,4 +27,8 @@ class BillViewModel(application: Application) : AndroidViewModel(application) {
     fun delete(bill: Bill) {
         repository.delete(bill)
     }
+
+    fun deleteAll() {
+        repository.deleteAll()
+    }
 }

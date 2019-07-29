@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/monthly_income_label"
+            android:text="@string/monthly_income_label"
+            android:labelFor="@+id/monthly_income_et"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/dollar_sign"
+            android:layout_below="@+id/monthly_income_label"
+            android:layout_marginStart="8dp"
+            android:text="@string/dollar_sign"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <EditText
+            android:id="@+id/monthly_income_et"
+            android:inputType="numberDecimal"
+            android:layout_toEndOf="@+id/dollar_sign"
+            android:layout_marginStart="4dp"
+            android:layout_below="@+id/monthly_income_label"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:id="@+id/save_button"
+            android:layout_alignParentBottom="true"
+            style="@style/Widget.AppCompat.ButtonBar"
+            android:text="@string/save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</RelativeLayout>

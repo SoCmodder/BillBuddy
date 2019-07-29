@@ -16,4 +16,9 @@ class BillRepository(private val billDao: BillDao) {
     fun delete(bill: Bill) {
         billDao.delete(bill)
     }
+
+    @WorkerThread
+    fun deleteAll() {
+        billDao.deleteAll()
+    }
 }
