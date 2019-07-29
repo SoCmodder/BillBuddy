@@ -11,6 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+//TODO: TO ADD:
+/**
+ * - Link to app associated with bill
+ * - Different ways to sort
+ * - Delete bills individually
+ * - Add menu and button for deleting all
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var billViewModel: BillViewModel
