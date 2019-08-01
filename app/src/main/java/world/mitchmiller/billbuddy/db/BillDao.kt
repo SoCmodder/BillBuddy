@@ -1,10 +1,7 @@
 package world.mitchmiller.billbuddy.db
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import world.mitchmiller.billbuddy.Bill
 
 @Dao
@@ -21,4 +18,7 @@ interface BillDao {
 
     @Delete
     fun delete(bill: Bill)
+
+    @Update
+    suspend fun update(bill: Bill)
 }

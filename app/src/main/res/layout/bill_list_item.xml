@@ -6,7 +6,7 @@
         app:cardElevation="8dp"
         app:cardCornerRadius="4dp"
         android:id="@+id/cardview"
-        android:background="@android:color/transparent"
+        android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_margin="8dp"
         android:layout_height="120dp">
@@ -53,6 +53,17 @@
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+        <ImageView
+                android:id="@+id/paid_status"
+                android:visibility="gone"
+                android:layout_marginEnd="16dp"
+                android:layout_below="@+id/amount"
+                android:layout_above="@+id/due_date"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_paid"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
 
         <TextView
                 android:id="@+id/due_date"

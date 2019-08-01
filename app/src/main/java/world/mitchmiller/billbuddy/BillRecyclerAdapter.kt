@@ -4,12 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class BillRecyclerAdapter internal constructor(context: Context) : RecyclerView.Adapter<BillRecyclerAdapter.BillViewHolder>() {
+class BillRecyclerAdapter internal constructor(context: Context, itemClickListener: OnItemClickListener) : RecyclerView.Adapter<BillRecyclerAdapter.BillViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var bills = emptyList<Bill>() // Cached copy of words
+    private val listener: OnItemClickListener = itemClickListener
 
     companion object {
         const val NAME_SORT = 11
@@ -22,6 +25,10 @@ class BillRecyclerAdapter internal constructor(context: Context) : RecyclerView.
         return BillViewHolder(itemView)
     }
 
+    public interface OnItemClickListener {
+        fun onItemClick(bill: Bill)
+    }
+
     override fun getItemCount() = bills.size
 
     override fun onBindViewHolder(holder: BillViewHolder, position: Int) {
@@ -30,6 +37,15 @@ class BillRecyclerAdapter internal constructor(context: Context) : RecyclerView.
         holder.billAmount.text = String.format("$%s", current.monthlyAmount)
         holder.billDate.text = current.dueDate
         holder.billNote.text = current.notes
+        if (current.paid) {
+            holder.billPaidStatus.visibility = View.VISIBLE
+        } else {
+            holder.billPaidStatus.visibility = View.GONE
+        }
+
+        holder.cardview.setOnClickListener {
+            listener.onItemClick(current)
+        }
     }
 
     internal fun setBills(bills: List<Bill>) {
@@ -50,9 +66,11 @@ class BillRecyclerAdapter internal constructor(context: Context) : RecyclerView.
     }
 
     inner class BillViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val cardview: CardView = itemView.findViewById(R.id.cardview)
         val billItemView: TextView = itemView.findViewById(R.id.name)
         val billAmount: TextView = itemView.findViewById(R.id.amount)
         val billDate: TextView = itemView.findViewById(R.id.due_date)
         val billNote: TextView = itemView.findViewById(R.id.note)
+        val billPaidStatus: ImageView = itemView.findViewById(R.id.paid_status)
     }
 }

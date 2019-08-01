@@ -42,12 +42,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        billViewModel = ViewModelProviders.of(this).get(BillViewModel::class.java)
+
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
-        adapter = BillRecyclerAdapter(this)
+        adapter = BillRecyclerAdapter(this, BillClickListener(billViewModel))
         recyclerview.adapter = adapter
         recyclerview.layoutManager = LinearLayoutManager(this)
-
-        billViewModel = ViewModelProviders.of(this).get(BillViewModel::class.java)
 
         billViewModel.allBills.observe(this, Observer { bills ->
             // Update the cached copy of the bills in the adapter
@@ -57,6 +57,14 @@ class MainActivity : AppCompatActivity() {
         fab = findViewById(R.id.fab)
         fab.setOnClickListener {
             launchNewBillActivityForResult()
+        }
+    }
+
+    class BillClickListener(billViewModel: BillViewModel) : BillRecyclerAdapter.OnItemClickListener {
+        val vm = billViewModel
+        override fun onItemClick(bill: Bill) {
+            val b = bill.copy(paid = !bill.paid)
+            vm.updateBill(b)
         }
     }
 
