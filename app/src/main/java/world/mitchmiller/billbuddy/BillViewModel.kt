@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import world.mitchmiller.billbuddy.db.Bill
 import world.mitchmiller.billbuddy.db.BillRepository
 import world.mitchmiller.billbuddy.db.BillRoomDatabase
 

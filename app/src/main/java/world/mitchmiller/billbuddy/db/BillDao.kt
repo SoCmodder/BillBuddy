@@ -2,7 +2,6 @@ package world.mitchmiller.billbuddy.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import world.mitchmiller.billbuddy.Bill
 
 @Dao
 interface BillDao {

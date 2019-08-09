@@ -1,4 +1,4 @@
-package world.mitchmiller.billbuddy
+package world.mitchmiller.billbuddy.activity
 
 import android.app.Activity
 import android.app.DatePickerDialog
@@ -6,15 +6,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
-import java.text.SimpleDateFormat
+import world.mitchmiller.billbuddy.BillDateUtils
+import world.mitchmiller.billbuddy.R
+import world.mitchmiller.billbuddy.db.Bill
 import java.util.*
 
-class NewBillActivity : AppCompatActivity() {
+class EditBillActivity : AppCompatActivity() {
 
     private lateinit var nameEditText: EditText
     private lateinit var amountEditText: EditText
@@ -35,7 +36,7 @@ class NewBillActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_new_bill)
+        setContentView(R.layout.activity_edit_bill)
 
         nameEditText = findViewById(R.id.name_et)
         amountEditText = findViewById(R.id.amount_et)
@@ -58,17 +59,14 @@ class NewBillActivity : AppCompatActivity() {
 
         dueDate.setOnClickListener {
 
-            val dateSetListener = object : DatePickerDialog.OnDateSetListener {
-                override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
-                                       dayOfMonth: Int) {
-                    cal.set(Calendar.YEAR, year)
-                    cal.set(Calendar.MONTH, monthOfYear)
-                    cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                    updateDateInView()
-                }
+            val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                cal.set(Calendar.YEAR, year)
+                cal.set(Calendar.MONTH, monthOfYear)
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                updateDateInView()
             }
 
-            DatePickerDialog(this@NewBillActivity,
+            DatePickerDialog(this@EditBillActivity,
                 dateSetListener,
                 // set DatePickerDialog to point to today's date when it loads up
                 cal.get(Calendar.YEAR),
@@ -81,6 +79,13 @@ class NewBillActivity : AppCompatActivity() {
 
     private fun updateDateInView() {
         dueDateValue.text = BillDateUtils.getBillDateStringFromDate(cal.time)
+    }
+
+    private fun fillCurrentDetails(bill: Bill) {
+        nameEditText.setText(bill.name)
+        amountEditText.setText(bill.monthlyAmount)
+        noteEditText.setText(bill.notes)
+        dueDateValue.setText(bill.dueDate)
     }
 
     private fun saveBill(bill: Bill) {

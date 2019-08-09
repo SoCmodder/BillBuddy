@@ -1,4 +1,4 @@
-package world.mitchmiller.billbuddy
+package world.mitchmiller.billbuddy.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

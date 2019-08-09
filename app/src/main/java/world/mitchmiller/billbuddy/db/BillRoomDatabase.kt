@@ -8,7 +8,6 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import world.mitchmiller.billbuddy.Bill
 
 @Database(entities = [Bill::class], version = 3)
 abstract class BillRoomDatabase : RoomDatabase() {

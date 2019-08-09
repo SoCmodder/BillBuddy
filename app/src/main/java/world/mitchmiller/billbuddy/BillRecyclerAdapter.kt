@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import world.mitchmiller.billbuddy.db.Bill
 
 class BillRecyclerAdapter internal constructor(context: Context, itemClickListener: OnItemClickListener) : RecyclerView.Adapter<BillRecyclerAdapter.BillViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)

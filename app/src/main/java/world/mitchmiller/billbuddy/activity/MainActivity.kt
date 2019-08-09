@@ -1,4 +1,4 @@
-package world.mitchmiller.billbuddy
+package world.mitchmiller.billbuddy.activity
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -15,9 +15,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import world.mitchmiller.billbuddy.*
 import world.mitchmiller.billbuddy.BillRecyclerAdapter.Companion.DATE_SORT
 import world.mitchmiller.billbuddy.BillRecyclerAdapter.Companion.NAME_SORT
 import world.mitchmiller.billbuddy.BillRecyclerAdapter.Companion.NOTE_SORT
+import world.mitchmiller.billbuddy.db.Bill
 
 //TODO: TO ADD:
 /**
@@ -45,7 +47,10 @@ class MainActivity : AppCompatActivity() {
         billViewModel = ViewModelProviders.of(this).get(BillViewModel::class.java)
 
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
-        adapter = BillRecyclerAdapter(this, BillClickListener(billViewModel))
+        adapter = BillRecyclerAdapter(
+            this,
+            BillClickListener(billViewModel)
+        )
         recyclerview.adapter = adapter
         recyclerview.layoutManager = LinearLayoutManager(this)
 
@@ -60,7 +65,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    class BillClickListener(billViewModel: BillViewModel) : BillRecyclerAdapter.OnItemClickListener {
+    class BillClickListener(billViewModel: BillViewModel) :
+        BillRecyclerAdapter.OnItemClickListener {
         val vm = billViewModel
         override fun onItemClick(bill: Bill) {
             val b = bill.copy(paid = !bill.paid)
@@ -78,7 +84,9 @@ class MainActivity : AppCompatActivity() {
         when(item?.itemId) {
             R.id.settings -> {
                 val i = Intent(this, SettingsActivity::class.java)
-                startActivityForResult(i, settingsRequestCode)
+                startActivityForResult(i,
+                    settingsRequestCode
+                )
             }
             R.id.delete_all -> {
                 val dialogClickListener = DialogInterface.OnClickListener{_,which ->
@@ -122,7 +130,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun launchNewBillActivityForResult() {
         val intent = Intent(this, NewBillActivity::class.java)
-        startActivityForResult(intent, newBillActivityRequestCode)
+        startActivityForResult(intent,
+            newBillActivityRequestCode
+        )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
