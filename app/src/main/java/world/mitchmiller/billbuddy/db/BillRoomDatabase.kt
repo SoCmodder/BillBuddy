@@ -9,10 +9,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [Bill::class], version = 3)
+@Database(entities = [Bill::class, Setting::class], version = 4)
 abstract class BillRoomDatabase : RoomDatabase() {
 
     abstract fun billDao(): BillDao
+    abstract fun settingDao(): SettingDao
 
     companion object {
         @Volatile
