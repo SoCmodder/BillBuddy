@@ -20,6 +20,7 @@ import world.mitchmiller.billbuddy.BillRecyclerAdapter.Companion.DATE_SORT
 import world.mitchmiller.billbuddy.BillRecyclerAdapter.Companion.NAME_SORT
 import world.mitchmiller.billbuddy.BillRecyclerAdapter.Companion.NOTE_SORT
 import world.mitchmiller.billbuddy.db.Bill
+import world.mitchmiller.billbuddy.viewmodel.BillViewModel
 
 //TODO: TO ADD:
 /**

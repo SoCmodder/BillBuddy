@@ -1,4 +1,4 @@
-package world.mitchmiller.billbuddy
+package world.mitchmiller.billbuddy.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

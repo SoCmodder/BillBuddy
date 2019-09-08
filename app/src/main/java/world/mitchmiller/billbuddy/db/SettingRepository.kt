@@ -22,7 +22,7 @@ class SettingRepository(private val settingDao: SettingDao) {
     }
 
     @WorkerThread
-    suspend fun updateBill(setting: Setting) {
+    suspend fun updateSetting(setting: Setting) {
         settingDao.update(setting)
     }
 }

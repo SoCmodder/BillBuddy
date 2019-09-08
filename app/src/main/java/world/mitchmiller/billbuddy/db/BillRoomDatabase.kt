@@ -45,8 +45,16 @@ abstract class BillRoomDatabase : RoomDatabase() {
             super.onOpen(db)
             INSTANCE?.let { database ->
                 scope.launch(Dispatchers.IO) {
-                    //populateDatabase(database.billDao())
+                    populateInitialSettings(database.settingDao())
                 }
+            }
+        }
+
+        // insert default settings
+        private suspend fun populateInitialSettings(dao: SettingDao) {
+            if (dao.getAllSettings().value?.size == 0) {
+                dao.insert(Setting("settings_version", "1", false))
+                dao.insert(Setting("income", "0.00", false))
             }
         }
     }
