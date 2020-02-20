@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [Bill::class, Setting::class], version = 4, exportSchema = false)
+@Database(entities = [Bill::class, Setting::class], version = 5, exportSchema = false)
 abstract class BillRoomDatabase : RoomDatabase() {
 
     abstract fun billDao(): BillDao
@@ -53,8 +53,8 @@ abstract class BillRoomDatabase : RoomDatabase() {
         // insert default settings
         private suspend fun populateInitialSettings(dao: SettingDao) {
             if (dao.getAllSettings().value?.size == 0) {
-                dao.insert(Setting("settings_version", "1", false))
-                dao.insert(Setting("income", "0.00", false))
+                dao.insertSetting(Setting("settings_version", "1", false))
+                dao.insertSetting(Setting("income", "0.00", false))
             }
         }
     }

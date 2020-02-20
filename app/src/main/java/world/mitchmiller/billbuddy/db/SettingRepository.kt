@@ -8,21 +8,21 @@ class SettingRepository(private val settingDao: SettingDao) {
 
     @WorkerThread
     suspend fun insert(setting: Setting) {
-        settingDao.insert(setting)
+        settingDao.insertSetting(setting)
     }
 
     @WorkerThread
     fun delete(setting: Setting) {
-        settingDao.delete(setting)
+        settingDao.deleteSetting(setting)
     }
 
     @WorkerThread
     fun deleteAll() {
-        settingDao.deleteAll()
+        settingDao.deleteAllSettings()
     }
 
     @WorkerThread
     suspend fun updateSetting(setting: Setting) {
-        settingDao.update(setting)
+        settingDao.updateSetting(setting)
     }
 }

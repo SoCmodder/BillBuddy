@@ -9,14 +9,14 @@ interface SettingDao {
     fun getAllSettings(): LiveData<List<Setting>>
 
     @Insert
-    suspend fun insert(setting: Setting)
+    suspend fun insertSetting(setting: Setting)
 
     @Query("DELETE FROM setting_table")
-    fun deleteAll()
+    fun deleteAllSettings()
 
     @Delete
-    fun delete(setting: Setting)
+    fun deleteSetting(setting: Setting)
 
     @Update
-    suspend fun update(setting: Setting)
+    suspend fun updateSetting(setting: Setting)
 }
