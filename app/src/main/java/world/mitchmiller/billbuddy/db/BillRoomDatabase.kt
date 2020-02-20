@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [Bill::class, Setting::class], version = 4)
+@Database(entities = [Bill::class, Setting::class], version = 4, exportSchema = false)
 abstract class BillRoomDatabase : RoomDatabase() {
 
     abstract fun billDao(): BillDao
